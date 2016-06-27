@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 /**
  *  Parent
  *  Staff class extends User class.
@@ -15,28 +16,28 @@ class Parent : User{
     
     // Initialize from Firebase snapshot data
     override
-    init(snapshot:FDataSnapshot){
+    init(snapshot:FIRDataSnapshot){
         self.childrenIDs = [:]
         // On intialization, parents may not have their children
         // assigned to them yet. In this case, set up an empty dictionary
-        if ((snapshot.value.objectForKey("childrenIDs")) != nil){
-            self.childrenIDs = snapshot.value["childrenIDs"] as! NSDictionary
+        if ((snapshot.value!.objectForKey("childrenIDs")) != nil){
+            self.childrenIDs = snapshot.value!["childrenIDs"] as! NSDictionary
         }
         super.init(
             key:snapshot.key,
-            name:snapshot.value["name"] as! String,
-            email:snapshot.value["email"] as! String,
-            contactInfo:snapshot.value["contactInfo"] as! String,
-            isStaff:snapshot.value["isStaff"] as! Bool)
+            name:snapshot.value!["name"] as! String,
+            email:snapshot.value!["email"] as! String,
+            contactInfo:snapshot.value!["contactInfo"] as! String,
+            isStaff:snapshot.value!["isStaff"] as! Bool)
     }
     
     // Initialize from Firebase authentication data
     override
-    init(authData: FAuthData,name:String, contactInfo:String, isStaff:Bool){
+    init(authData: FIRUser,name:String, contactInfo:String, isStaff:Bool){
         self.childrenIDs = [:]
         super.init(key:authData.uid.lowercaseString,
                    name:name,
-                   email:authData.providerData["email"] as! String,
+                   email:authData.email!,
                    contactInfo:contactInfo,
                    isStaff:false)
     }

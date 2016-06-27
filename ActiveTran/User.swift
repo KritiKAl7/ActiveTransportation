@@ -3,6 +3,7 @@ import Foundation
  *  User
  *  User class is extended by both Staff and Parent classes.
  */
+import Firebase
 class User {
     var key: String
     let name: String
@@ -11,21 +12,21 @@ class User {
     let isStaff: Bool!
 
     // Initialize from Firebase Authentication data
-    init(authData: FAuthData, name:String, contactInfo: String, isStaff: Bool) {
+    init(authData: FIRUser, name:String, contactInfo: String, isStaff: Bool) {
         self.key = authData.uid.lowercaseString
         self.name = name
-        self.email = authData.providerData["email"] as! String
+        self.email = authData.email!
         self.contactInfo = contactInfo
         self.isStaff = isStaff 
     }
     
     // Initialize from Firebase snapshot data
-    init(snapshot: FDataSnapshot) {
+    init(snapshot: FIRDataSnapshot) {
         key = snapshot.key
-        name = snapshot.value["name"] as! String
-        email = snapshot.value["email"] as! String
-        contactInfo = snapshot.value["contactInfo"] as! String
-        isStaff = snapshot.value["isStaff"] as! Bool
+        name = snapshot.value!["name"] as! String
+        email = snapshot.value!["email"] as! String
+        contactInfo = snapshot.value!["contactInfo"] as! String
+        isStaff = snapshot.value!["isStaff"] as! Bool
         
     }
   

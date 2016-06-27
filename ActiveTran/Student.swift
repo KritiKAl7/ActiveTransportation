@@ -2,6 +2,7 @@ import Foundation
 /**
  * Student Class
  */
+import Firebase
 struct Student {
     
     let key: String!
@@ -21,12 +22,12 @@ struct Student {
   }
     
     // Initialization from Firebase snapshot data
-    init(snapshot: FDataSnapshot) {
+    init(snapshot: FIRDataSnapshot) {
         key = snapshot.key
-        name = snapshot.value["name"] as! String
-        school = snapshot.value["school"] as! String
-        parentID = snapshot.value["parentID"] as! String
-        routeID = snapshot.value["routeID"] as! String
+        name = snapshot.value!["name"] as! String
+        school = snapshot.value!["school"] as! String
+        parentID = snapshot.value!["parentID"] as! String
+        routeID = snapshot.value!["routeID"] as! String
     }
     
     // Convert to JSON object for pushing onto Firebase

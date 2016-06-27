@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 /**
  *  Staff
  *  Staff class extends User class.
@@ -14,28 +15,28 @@ class Staff : User{
     
     // Initialize from Firebase snapshot data
     override
-    init(snapshot:FDataSnapshot){
+    init(snapshot:FIRDataSnapshot){
         // On intialization, staff may not have their route
         // assigned to them yet. In this case, set up an empty string
         self.routeID = ""
-        if ((snapshot.value.objectForKey("routeID")) != nil){
-            self.routeID = snapshot.value["routeID"] as! String
+        if ((snapshot.value!.objectForKey("routeID")) != nil){
+            self.routeID = snapshot.value!["routeID"] as! String
         }
         super.init(
             key:snapshot.key,
-            name:snapshot.value["name"] as! String,
-            email:snapshot.value["email"] as! String,
-            contactInfo:snapshot.value["contactInfo"] as! String,
-            isStaff:snapshot.value["isStaff"] as! Bool)
+            name:snapshot.value!["name"] as! String,
+            email:snapshot.value!["email"] as! String,
+            contactInfo:snapshot.value!["contactInfo"] as! String,
+            isStaff:snapshot.value!["isStaff"] as! Bool)
     }
     
     // Initialize from Firebase Authentication data
     override
-    init(authData: FAuthData, name:String, contactInfo: String, isStaff: Bool) {
+    init(authData: FIRUser, name:String, contactInfo: String, isStaff: Bool) {
         self.routeID = ""
         super.init(key: authData.uid.lowercaseString,
                    name: name,
-                   email:authData.providerData["email"] as! String,
+                   email:authData.email!,
                    contactInfo: contactInfo,
                    isStaff: true)
     }

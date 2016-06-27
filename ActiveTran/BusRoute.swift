@@ -3,6 +3,7 @@ import Foundation
  *  BusRoute Class
  *  Both students and staff store busRoutes that match them together
  */
+import Firebase
 struct BusRoute {
     let staffID: String
     let students: NSDictionary
@@ -11,11 +12,11 @@ struct BusRoute {
     let key: String
     
     // Initialize from Firebase Snapshot
-    init(snapshot: FDataSnapshot) {
-        staffID = snapshot.value["staffID"] as! String
-        students = snapshot.value["students"] as! NSDictionary
-        meetingTime = snapshot.value["meetingTime"] as! String
-        meetingLocation = snapshot.value["meetingLocation"] as! String
+    init(snapshot:FIRDataSnapshot) {
+        staffID = snapshot.value!["staffID"] as! String
+        students = snapshot.value!["students"] as! NSDictionary
+        meetingTime = snapshot.value!["meetingTime"] as! String
+        meetingLocation = snapshot.value!["meetingLocation"] as! String
         key = snapshot.key
     }
     

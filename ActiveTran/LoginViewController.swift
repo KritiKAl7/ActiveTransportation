@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     var nameToPass: String!
     var routeIDToPass: String!
     var isStaffToPass:Bool!
+    var email: String!
+    var password: String!
     
     // Mark: Communicator with Firebase
     var dbComm = DbCommunicator()
@@ -32,23 +34,33 @@ class LoginViewController: UIViewController {
         signUpMode = false
         
         // Create an authentication observer
-        dbComm.studentsRef.observeAuthEventWithBlock { (authData) -> Void in
-            // Block passed the authData parameter
-            if authData != nil {
-                // On successful authentication, perform the segue. Pass nil as the sender.
-                self.performSegueWithIdentifier(self.LoginToList, sender: nil)
+        FIRAuth.auth()!.addAuthStateDidChangeListener() {
+            (auth, user) in
+            if let user = user {
+                print("user signed in with uid: ", user.uid)
+            } else {
+                print("No user")
             }
         }
-        
-        super.viewDidAppear(animated)
     }
     
     // MARK: Actions
+//    @IBAction func loginDidTouch(sender: AnyObject) {
+//        dbComm.rootRef.authUser(textFieldLoginEmail.text, password: textFieldLoginPassword.text,
+//                                withCompletionBlock: { (error, auth) in
+//                                    
+//        })
+//    }
     @IBAction func loginDidTouch(sender: AnyObject) {
-        dbComm.rootRef.authUser(textFieldLoginEmail.text, password: textFieldLoginPassword.text,
-                                withCompletionBlock: { (error, auth) in
-                                    
-        })
+        FIRAuth.auth()!.signInWithEmail(textFieldLoginEmail.text!, password: textFieldLoginPassword.text!) { (user, error) in
+            if let error = error {
+                print("Sign in failed:", error)
+            } else {
+                print ("Signed in with uid:", user!.uid)
+                self.performSegueWithIdentifier(self.LoginToList, sender: nil)
+                
+            }
+        }
     }
     
     // MARK: Actions
@@ -74,14 +86,27 @@ class LoginViewController: UIViewController {
             self.contactInfoToPass = contactInfoField.text
             self.isStaffToPass = (isStaffField.text?.lowercaseString.containsString("yes"))
             
-            self.dbComm.studentsRef.createUser(emailField.text, password: passwordField.text) { (error: NSError!) in
+//            self.dbComm.studentsRef.createUser(emailField.text, password: passwordField.text) { (error: NSError!) in
+//                if error == nil {
+//                    self.dbComm.rootRef.authUser(emailField.text, password: passwordField.text,
+//                                                 withCompletionBlock: { (error, auth) -> Void in
+//                                                    self.performSegueWithIdentifier(self.LoginToList, sender: nil)
+//                    })
+//                self.email = emailField.text
+//                self.password = passwordField.text
+//                }
+//            }
+            FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in
                 if error == nil {
-                    self.dbComm.rootRef.authUser(emailField.text, password: passwordField.text,
-                                                 withCompletionBlock: { (error, auth) -> Void in
-                                                    self.performSegueWithIdentifier(self.LoginToList, sender: nil)
-                    })
+                    FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!){
+                        (error, auth) -> Void in
+                        self.performSegueWithIdentifier(self.LoginToList, sender: nil)
+                    }
+                    self.email = emailField.text
+                    self.password = passwordField.text
                 }
             }
+
         }
         
         
@@ -136,6 +161,9 @@ class LoginViewController: UIViewController {
                 svc.isStaff = self.isStaffToPass
                 svc.signUpMode = self.signUpMode
             }
+            svc.email = self.email
+            svc.password = self.password
+            svc.changed = false
         }
     }
 

@@ -34,7 +34,7 @@ class ContactInfoViewController: UITableViewController, MFMessageComposeViewCont
                 // a list to store the parents for the given student
                 if (snapshot.hasChildren()){
                     for item in snapshot.children {
-                        let user = User(snapshot: item as! FDataSnapshot)
+                        let user = User(snapshot: item as! FIRDataSnapshot)
                         self.users.append(user)
                     }
                 }
@@ -44,7 +44,7 @@ class ContactInfoViewController: UITableViewController, MFMessageComposeViewCont
             self.dbComm.routeRef.queryOrderedByKey().queryEqualToValue(self.studentSelected.routeID).observeEventType(.Value,withBlock: { snapshot in
                 if (snapshot.hasChildren()){
                     let item = snapshot.children.nextObject()
-                    let route = BusRoute(snapshot: item as! FDataSnapshot)
+                    let route = BusRoute(snapshot: item as! FIRDataSnapshot)
                     self.queryString = route.staffID
                 }
                 
@@ -53,7 +53,7 @@ class ContactInfoViewController: UITableViewController, MFMessageComposeViewCont
                     // a list to store the parents for the given student
                     if (snapshot.hasChildren()){
                         for item in snapshot.children {
-                            let user = User(snapshot: item as! FDataSnapshot)
+                            let user = User(snapshot: item as! FIRDataSnapshot)
                             self.users.append(user)
                         }
                     }

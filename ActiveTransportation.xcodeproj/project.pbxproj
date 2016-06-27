@@ -11,12 +11,14 @@
 		03B206861C78225B00FD7782 /* BusRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B206851C78225B00FD7782 /* BusRoute.swift */; };
 		03B2068A1C79526300FD7782 /* StudentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B206891C79526300FD7782 /* StudentWrapper.swift */; };
 		03C64ED61C8C1B3300626E0E /* MeetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C64ED51C8C1B3300626E0E /* MeetingInfoCell.swift */; };
+		2B3E39211D2191230076E273 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E39201D2191230076E273 /* GoogleService-Info.plist */; };
+		2BA99DF81D1B340600CED059 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA99DF71D1B340600CED059 /* SettingsViewController.swift */; };
 		744334CA1C896B6800B4AD99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 744334C91C896B6800B4AD99 /* Main.storyboard */; };
 		744334CE1C8970A200B4AD99 /* DbCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744334CD1C8970A200B4AD99 /* DbCommunicator.swift */; };
 		749EFAA11C8BEF340018D3F7 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749EFAA01C8BEF340018D3F7 /* ContactInfoViewController.swift */; };
 		7C227E741CB0C3820071F20A /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C227E731CB0C3820071F20A /* Staff.swift */; };
 		7C227E761CB0CA9E0071F20A /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C227E751CB0CA9E0071F20A /* Parent.swift */; };
-		941A68C9047CFC613264BFB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F599D9265F4B40571F432E78 /* libPods.a */; };
+		A84793CED76C62001D4F07AC /* Pods_ActiveTransportation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF6A006C0149C0838FEAC58 /* Pods_ActiveTransportation.framework */; };
 		BB2385621B3DD5AB0079CD01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2385611B3DD5AB0079CD01 /* AppDelegate.swift */; };
 		BB2385641B3DD5AB0079CD01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2385631B3DD5AB0079CD01 /* LoginViewController.swift */; };
 		BB2385691B3DD5AB0079CD01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB2385681B3DD5AB0079CD01 /* Images.xcassets */; };
@@ -32,13 +34,16 @@
 		03B206851C78225B00FD7782 /* BusRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusRoute.swift; sourceTree = "<group>"; };
 		03B206891C79526300FD7782 /* StudentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentWrapper.swift; sourceTree = "<group>"; };
 		03C64ED51C8C1B3300626E0E /* MeetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingInfoCell.swift; sourceTree = "<group>"; };
+		0E246C4AC0D235EB0A823A98 /* Pods-ActiveTransportation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTransportation.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation.release.xcconfig"; sourceTree = "<group>"; };
+		2B3E39201D2191230076E273 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BA99DF71D1B340600CED059 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4D5440B11FCD1F765A43CD95 /* Pods-ActiveTransportation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTransportation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation.debug.xcconfig"; sourceTree = "<group>"; };
 		744334C91C896B6800B4AD99 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		744334CD1C8970A200B4AD99 /* DbCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbCommunicator.swift; sourceTree = "<group>"; };
 		749EFAA01C8BEF340018D3F7 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		7C227E731CB0C3820071F20A /* Staff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		7C227E751CB0CA9E0071F20A /* Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
-		9BA2A2DB5BA4733818152B9B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A898E3AE11425E4495FAC93A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BAF6A006C0149C0838FEAC58 /* Pods_ActiveTransportation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActiveTransportation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB23855C1B3DD5AB0079CD01 /* ActiveTransportation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActiveTransportation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2385601B3DD5AB0079CD01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB2385611B3DD5AB0079CD01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +55,6 @@
 		BB2385891B3DD9640079CD01 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		BB30CD491B439B60004B3177 /* MeetingInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingInfoTableViewController.swift; sourceTree = "<group>"; };
 		BB7DA5101B42C8100018B530 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F599D9265F4B40571F432E78 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				941A68C9047CFC613264BFB7 /* libPods.a in Frameworks */,
+				A84793CED76C62001D4F07AC /* Pods_ActiveTransportation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,22 +77,13 @@
 			name = "Layout Support";
 			sourceTree = "<group>";
 		};
-		5BCB7DE7572521D09DC0AA00 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9BA2A2DB5BA4733818152B9B /* Pods.debug.xcconfig */,
-				A898E3AE11425E4495FAC93A /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		BB2385531B3DD5AB0079CD01 = {
 			isa = PBXGroup;
 			children = (
 				BB23855E1B3DD5AB0079CD01 /* ActiveTransportation */,
 				BB23855D1B3DD5AB0079CD01 /* Products */,
-				5BCB7DE7572521D09DC0AA00 /* Pods */,
-				C8A8CAF31E6679C1B66E9218 /* Frameworks */,
+				D0B2DB1F9695479A63740541 /* Pods */,
+				CC507524E4F0260770E4D4F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +98,7 @@
 		BB23855E1B3DD5AB0079CD01 /* ActiveTransportation */ = {
 			isa = PBXGroup;
 			children = (
+				2B3E39201D2191230076E273 /* GoogleService-Info.plist */,
 				03C64ED41C8C1AF400626E0E /* Layout Support */,
 				BB2385881B3DD9550079CD01 /* Models */,
 				BB2385811B3DD8310079CD01 /* Controllers */,
@@ -131,6 +127,7 @@
 				BB2385831B3DD8660079CD01 /* StudentListTableViewController.swift */,
 				BB30CD491B439B60004B3177 /* MeetingInfoTableViewController.swift */,
 				749EFAA01C8BEF340018D3F7 /* ContactInfoViewController.swift */,
+				2BA99DF71D1B340600CED059 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -167,12 +164,21 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		C8A8CAF31E6679C1B66E9218 /* Frameworks */ = {
+		CC507524E4F0260770E4D4F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F599D9265F4B40571F432E78 /* libPods.a */,
+				BAF6A006C0149C0838FEAC58 /* Pods_ActiveTransportation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0B2DB1F9695479A63740541 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D5440B11FCD1F765A43CD95 /* Pods-ActiveTransportation.debug.xcconfig */,
+				0E246C4AC0D235EB0A823A98 /* Pods-ActiveTransportation.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,11 +188,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB23857B1B3DD5AB0079CD01 /* Build configuration list for PBXNativeTarget "ActiveTransportation" */;
 			buildPhases = (
-				271B2361A34E68199850C66E /* Check Pods Manifest.lock */,
+				3EF9017FA51B8E2962C8268C /* [CP] Check Pods Manifest.lock */,
 				BB2385581B3DD5AB0079CD01 /* Sources */,
 				BB2385591B3DD5AB0079CD01 /* Frameworks */,
 				BB23855A1B3DD5AB0079CD01 /* Resources */,
-				3AAA8D86D4ADEB9EEF3F0820 /* Copy Pods Resources */,
+				5E00B6D6961C7D89BD515439 /* [CP] Embed Pods Frameworks */,
+				66B3F0D88C0B1F5931BEA09B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				744334CA1C896B6800B4AD99 /* Main.storyboard in Resources */,
+				2B3E39211D2191230076E273 /* GoogleService-Info.plist in Resources */,
 				BB23856C1B3DD5AB0079CD01 /* LaunchScreen.xib in Resources */,
 				BB2385691B3DD5AB0079CD01 /* Images.xcassets in Resources */,
 			);
@@ -246,14 +254,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		271B2361A34E68199850C66E /* Check Pods Manifest.lock */ = {
+		3EF9017FA51B8E2962C8268C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,19 +269,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		3AAA8D86D4ADEB9EEF3F0820 /* Copy Pods Resources */ = {
+		5E00B6D6961C7D89BD515439 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66B3F0D88C0B1F5931BEA09B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -291,6 +314,7 @@
 				BB2385841B3DD8660079CD01 /* StudentListTableViewController.swift in Sources */,
 				03C64ED61C8C1B3300626E0E /* MeetingInfoCell.swift in Sources */,
 				BB23858A1B3DD9640079CD01 /* Student.swift in Sources */,
+				2BA99DF81D1B340600CED059 /* SettingsViewController.swift in Sources */,
 				BB30CD4A1B439B60004B3177 /* MeetingInfoTableViewController.swift in Sources */,
 				03B2068A1C79526300FD7782 /* StudentWrapper.swift in Sources */,
 				BB7DA5111B42C8100018B530 /* User.swift in Sources */,
@@ -398,7 +422,7 @@
 		};
 		BB23857C1B3DD5AB0079CD01 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BA2A2DB5BA4733818152B9B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4D5440B11FCD1F765A43CD95 /* Pods-ActiveTransportation.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -410,7 +434,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.davideast.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ActiveTransportation;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/XiaoyangQian/Documents/2015-2016/School/Spring2016/CS121/codebase/ActiveTransportation/ActiveTran/ActiveTran-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./ActiveTran/ActiveTran-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -418,7 +442,7 @@
 		};
 		BB23857D1B3DD5AB0079CD01 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A898E3AE11425E4495FAC93A /* Pods.release.xcconfig */;
+			baseConfigurationReference = 0E246C4AC0D235EB0A823A98 /* Pods-ActiveTransportation.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -430,7 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.davideast.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ActiveTransportation;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/XiaoyangQian/Documents/2015-2016/School/Spring2016/CS121/codebase/ActiveTransportation/ActiveTran/ActiveTran-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./ActiveTran/ActiveTran-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

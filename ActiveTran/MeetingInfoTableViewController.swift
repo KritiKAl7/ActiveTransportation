@@ -28,7 +28,7 @@ class MeetingInfoTableViewController: UITableViewController {
                 var busRoutesFromDB = [BusRoute]()
                 if (snapshot.hasChildren()){
                     for item in snapshot.children {
-                        let routeFromDB = BusRoute(snapshot: item as! FDataSnapshot)
+                        let routeFromDB = BusRoute(snapshot: item as! FIRDataSnapshot)
                         busRoutesFromDB.append(routeFromDB)
                     }
                 }
@@ -41,7 +41,7 @@ class MeetingInfoTableViewController: UITableViewController {
                     snapshot in
                     if (snapshot.hasChildren()){
                         for item in snapshot.children {
-                            let routeFromDB = BusRoute(snapshot: item as! FDataSnapshot)
+                            let routeFromDB = BusRoute(snapshot: item as! FIRDataSnapshot)
                             self.busRoutes.append(routeFromDB)
                             self.meetingInfoWrapperList.append(MeetingInfoWrapper(student: student,busRoute: routeFromDB))
                         }

@@ -7,6 +7,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
     // MARK: Constants
     let ListToUsers = "ListToUsers"
     let ListToContactInfo = "ListToContactInfo"
+    let Settings = "Settings"
     let MORNING_PERIOD = "morning"
     let AFTERNOON_PERIOD = "afternoon"
     
@@ -19,6 +20,10 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
     var logExsits = false
     var isMorning = true
     var currentDate : String!
+    var email: String!
+    var password: String!
+    var changed: Bool!
+    var uid:String!
     
     // MARK: Selected student
     var studentSelected: StudentWrapper!
@@ -30,8 +35,10 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
     var parent:Parent!
     var staff:Staff!
     var meetingInfoBarButtonItem: UIBarButtonItem!
+    var settingsButtonItem: UIBarButtonItem!
     var isStaff = false
     var groupMessagePrep = 0
+    
     
     // Mark: DbCommunicator
     var dbComm = DbCommunicator()
@@ -51,9 +58,9 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
         self.currentDate =  dateFormatter.stringFromDate(date)
         if (isMorning == true){
-            self.dbComm.currentLogRef = self.dbComm.currentLogRef.childByAppendingPath(self.currentDate).childByAppendingPath(MORNING_PERIOD)
+            self.dbComm.currentLogRef = self.dbComm.currentLogRef.child(self.currentDate).child(MORNING_PERIOD)
         }else{
-            self.dbComm.currentLogRef = self.dbComm.currentLogRef.childByAppendingPath(self.currentDate).childByAppendingPath(AFTERNOON_PERIOD)
+            self.dbComm.currentLogRef = self.dbComm.currentLogRef.child(self.currentDate).child(AFTERNOON_PERIOD)
         }
         
         // Set up swipe to delete
@@ -161,7 +168,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
             var phoneNum = [String]()
             if (self.isStaff == true){
                 for s in self.students{
-                    self.dbComm.usersRef.childByAppendingPath(s.parentID).observeSingleEventOfType(.Value, withBlock: {
+                    self.dbComm.usersRef.child(s.parentID).observeSingleEventOfType(.Value, withBlock: {
                         snapshot in
                         if (snapshot.hasChildren()){
                             let parent = Parent(snapshot:snapshot)
@@ -180,11 +187,11 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                 }
             }else {
                 for s in self.students{
-                    self.dbComm.routeRef.childByAppendingPath(s.routeID).observeSingleEventOfType(.Value, withBlock: {
+                    self.dbComm.routeRef.child(s.routeID).observeSingleEventOfType(.Value, withBlock: {
                         snapshot in
                         if (snapshot.hasChildren()){
-                            let staffID = snapshot.value["staffID"] as! String
-                            self.dbComm.usersRef.childByAppendingPath(staffID).observeEventType(.Value, withBlock: {
+                            let staffID = snapshot.value!["staffID"] as! String
+                            self.dbComm.usersRef.child(staffID).observeEventType(.Value, withBlock: {
                                 snapshot2 in
                                 if(snapshot2.hasChildren()){
                                     let staff = Staff(snapshot:snapshot2)
@@ -284,31 +291,39 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                 }
                 
             }
+        } else if (segue.identifier == "Settings") {
+            let nav = segue.destinationViewController as! SettingsViewController
+            nav.email = self.email
+            nav.password = self.password
+            nav.uid = self.uid
         }
     }
     
     func authenticateUser(){
-        self.dbComm.rootRef.observeAuthEventWithBlock { authData in
-            if authData != nil {
+        FIRAuth.auth()?.addAuthStateDidChangeListener() {
+            (auth, user) in
+            if user != nil {
                 if (self.signUpMode == true){
-                    let currentUserRef = Firebase!(self.dbComm.usersRef.childByAppendingPath(authData.uid))
+                    let currentUserRef = self.dbComm.usersRef.child(user!.uid)
+                    self.uid = user!.uid
                     if (self.isStaff){
-                        self.staff = Staff(authData:authData, name:self.nameToPass, contactInfo:self.contactInfoToPass,
+                        self.staff = Staff(authData: user!, name:self.nameToPass, contactInfo:self.contactInfoToPass,
                             isStaff:true)
                         currentUserRef.setValue(self.staff.toAnyObject())
                     } else {
-                        self.parent = Parent(authData:authData, name:self.nameToPass, contactInfo:self.contactInfoToPass,
+                        self.parent = Parent(authData: user!, name:self.nameToPass, contactInfo:self.contactInfoToPass,
                             isStaff:false)
                         currentUserRef.setValue(self.parent.toAnyObject())
                     }
-                    self.dbComm.rootRef.unauth()
+                    try! FIRAuth.auth()!.signOut()
                     self.reloadTable()
                     self.nullDataAlert()
                 } else{
-                    let idCopy = authData.uid.lowercaseString
-                    self.dbComm.usersRef.childByAppendingPath(idCopy).observeEventType(.Value, withBlock: { snapshot in
+                    let idCopy = user!.uid
+                    print(idCopy)
+                    self.dbComm.usersRef.child(idCopy).observeEventType(.Value, withBlock: { snapshot in
                         if (snapshot.hasChildren()){
-                            if (snapshot.value["isStaff"] as! Bool){
+                            if (snapshot.value!["isStaff"] as! Bool){
                                 self.isStaff = true
                                 self.staff = Staff(snapshot: snapshot)
                             }else{
@@ -319,25 +334,65 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                         self.loadStudentInfo()
                     })
                     // need this to switch between accounts
-                    self.dbComm.rootRef.unauth()
+                    try! FIRAuth.auth()!.signOut()
                 }
             }
         }
+        
+        
+        
+        
+//        self.dbComm.rootRef.observeAuthEventWithBlock { authData in
+//            if authData != nil {
+//                if (self.signUpMode == true){
+//                    let currentUserRef = Firebase!(self.dbComm.usersRef.childByAppendingPath(authData.uid))
+//                    self.uid = authData.uid
+//                    if (self.isStaff){
+//                        self.staff = Staff(authData:authData, name:self.nameToPass, contactInfo:self.contactInfoToPass,
+//                            isStaff:true)
+//                        currentUserRef.setValue(self.staff.toAnyObject())
+//                    } else {
+//                        self.parent = Parent(authData:authData, name:self.nameToPass, contactInfo:self.contactInfoToPass,
+//                            isStaff:false)
+//                        currentUserRef.setValue(self.parent.toAnyObject())
+//                    }
+//                    self.dbComm.rootRef.unauth()
+//                    self.reloadTable()
+//                    self.nullDataAlert()
+//                } else{
+//                    let idCopy = authData.uid.lowercaseString
+//                    self.dbComm.usersRef.childByAppendingPath(idCopy).observeEventType(.Value, withBlock: { snapshot in
+//                        if (snapshot.hasChildren()){
+//                            if (snapshot.value["isStaff"] as! Bool){
+//                                self.isStaff = true
+//                                self.staff = Staff(snapshot: snapshot)
+//                            }else{
+//                                self.isStaff = false
+//                                self.parent = Parent(snapshot: snapshot)
+//                            }
+//                        }
+//                        self.loadStudentInfo()
+//                    })
+//                    // need this to switch between accounts
+//                    self.dbComm.rootRef.unauth()
+//                }
+//            }
+//        }
     }
     
     func loadStudentInfo(){
         if(self.isStaff && self.staff.routeID != ""){
-            self.dbComm.routeRef.childByAppendingPath(self.staff.routeID).observeEventType(.Value, withBlock: {
+            self.dbComm.routeRef.child(self.staff.routeID).observeEventType(.Value, withBlock: {
                 snapshot in
                 if (snapshot.hasChildren()){
-                    let item = BusRoute(snapshot: snapshot as FDataSnapshot)
+                    let item = BusRoute(snapshot: snapshot as FIRDataSnapshot)
                     for s in item.students{
                         self.keysForTable.append(s.key as! String)
                         // go find actual student object
-                        self.dbComm.studentsRef.childByAppendingPath(s.key as! String).observeEventType(.Value, withBlock: {
+                        self.dbComm.studentsRef.child(s.key as! String).observeEventType(.Value, withBlock: {
                             snapshot2 in
                             if (snapshot2.hasChildren()){
-                                let newStudent = Student(snapshot: snapshot2 as FDataSnapshot)
+                                let newStudent = Student(snapshot: snapshot2 as FIRDataSnapshot)
                                 let newStudentWpr = StudentWrapper(student: newStudent, arrived: false)
                                 self.students.append(newStudent)
                                 self.studentsWrapper[newStudent.key] = newStudentWpr
@@ -351,7 +406,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                 }
             })
         } else if(!self.isStaff && self.parent.childrenIDs.count > 0){
-            self.dbComm.usersRef.childByAppendingPath(self.parent.key).childByAppendingPath("childrenIDs").observeEventType(.Value,withBlock:{
+            self.dbComm.usersRef.child(self.parent.key).child("childrenIDs").observeEventType(.Value,withBlock:{
                 snapshot in
                 if (snapshot.hasChildren()){
                     let childrenIDs = snapshot.value as! NSDictionary
@@ -361,10 +416,10 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                         // for later display purposes
                         self.keysForTable.append(child.key as! String)
                         // go fetch the actual Student object
-                        self.dbComm.studentsRef.childByAppendingPath(child.key as! String).observeEventType(.Value,withBlock:{
+                        self.dbComm.studentsRef.child(child.key as! String).observeEventType(.Value,withBlock:{
                             snapshot2 in
                             if (snapshot2.hasChildren()){
-                                let newStudent = Student(snapshot: snapshot2 as FDataSnapshot)
+                                let newStudent = Student(snapshot: snapshot2 as FIRDataSnapshot)
                                 let newStudentWpr = StudentWrapper(student:newStudent,arrived:false)
                                 self.students.append(newStudent)
                                 self.studentsWrapper[newStudent.key] = newStudentWpr
@@ -430,17 +485,17 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                 snapshot in
                 // If the staff is the first one logging in on that day,
                 // or if the log for that particular student hasn't been created yet
-                if (!snapshot.exists() || snapshot.value.objectForKey(studentID) == nil){
+                if (!snapshot.exists() || snapshot.value!.objectForKey(studentID) == nil){
                     self.dbComm.currentLogRef.updateChildValues([studentID : false])
                     self.studentsWrapper[studentID]!.arrived = false
                 }else{
-                    self.studentsWrapper[studentID]!.arrived = snapshot.value[studentID] as! Bool
+                    self.studentsWrapper[studentID]!.arrived = snapshot.value![studentID] as! Bool
                 }
                 self.logExsits = true
                 self.reloadTable()
             })
         } else {
-            self.dbComm.currentLogRef.childByAppendingPath(studentID).observeEventType(.Value,withBlock: {
+            self.dbComm.currentLogRef.child(studentID).observeEventType(.Value,withBlock: {
                 snapshot in
                 if (snapshot.value is NSNull){
                     self.logExsits = false
