@@ -1,6 +1,6 @@
 import UIKit
 import QuartzCore
-
+import Toast_Swift
 /**
  *  LoginViewController: Controller for user login and registering.
  *  First View the user encounters.
@@ -21,6 +21,8 @@ class LoginViewController: UIViewController {
     var isStaffToPass:Bool!
     var email: String!
     var password: String!
+    var currUser: FIRUser!
+    var auth: FIRAuth!
     
     // Mark: Communicator with Firebase
     var dbComm = DbCommunicator()
@@ -28,21 +30,27 @@ class LoginViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
-    
+    override func viewDidLoad() {
+        self.navigationItem.hidesBackButton = true
+    }
     // MARK: UIViewController Lifecycle
     override func viewDidAppear(animated: Bool) {
-        signUpMode = false
         
+        signUpMode = false
+        try! FIRAuth.auth()!.signOut()
         // Create an authentication observer
         FIRAuth.auth()!.addAuthStateDidChangeListener() {
             (auth, user) in
             if let user = user {
                 print("user signed in with uid: ", user.uid)
+                self.currUser = user
+                self.auth = auth
             } else {
                 print("No user")
             }
         }
     }
+    
     
     // MARK: Actions
 //    @IBAction func loginDidTouch(sender: AnyObject) {
@@ -55,6 +63,7 @@ class LoginViewController: UIViewController {
         FIRAuth.auth()!.signInWithEmail(textFieldLoginEmail.text!, password: textFieldLoginPassword.text!) { (user, error) in
             if let error = error {
                 print("Sign in failed:", error)
+                self.view.makeToast(error.localizedDescription)
             } else {
                 print ("Signed in with uid:", user!.uid)
                 self.performSegueWithIdentifier(self.LoginToList, sender: nil)
@@ -148,6 +157,27 @@ class LoginViewController: UIViewController {
                               completion: nil)
     }
     
+    @IBAction func forgetPasswordDidTouch(sender: AnyObject) {
+        NSOperationQueue.mainQueue().addOperationWithBlock() {
+            let userEmail = self.textFieldLoginEmail.text
+            if (userEmail!.isEmpty != true){
+                FIRAuth.auth()?.sendPasswordResetWithEmail(userEmail!) {
+                    error in
+                    if let error = error{
+                        NSOperationQueue.mainQueue().addOperationWithBlock() {
+                        self.view.makeToast(error.localizedDescription)
+                        }
+                    } else {
+                        NSOperationQueue.mainQueue().addOperationWithBlock() {
+                        self.view.makeToast("Password reset Email sent, please check your inbox ")
+                        }
+                    }
+                }
+            } else {
+                self.view.makeToast("Please enter your Email to reset Password")
+            }
+        }
+    }
     // Segue to StudentListTableViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "LoginToList") {
@@ -164,6 +194,9 @@ class LoginViewController: UIViewController {
             svc.email = self.email
             svc.password = self.password
             svc.changed = false
+            svc.user = self.currUser
+            svc.auth = self.auth
+            
         }
     }
 

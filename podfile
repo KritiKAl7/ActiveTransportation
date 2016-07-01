@@ -8,5 +8,7 @@ target 'ActiveTransportation' do
   pod 'Firebase/Database'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  platform :ios, '8.0'
+  pod 'Toast-Swift', '~> 1.3.0'
   # Pods for ActiveTransportation
 end

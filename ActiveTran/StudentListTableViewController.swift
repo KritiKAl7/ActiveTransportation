@@ -7,6 +7,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
     // MARK: Constants
     let ListToUsers = "ListToUsers"
     let ListToContactInfo = "ListToContactInfo"
+    let ListToSettings = "ListToSettings"
     let Settings = "Settings"
     let MORNING_PERIOD = "morning"
     let AFTERNOON_PERIOD = "afternoon"
@@ -24,6 +25,8 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
     var password: String!
     var changed: Bool!
     var uid:String!
+    var user:FIRUser!
+    var auth:FIRAuth!
     
     // MARK: Selected student
     var studentSelected: StudentWrapper!
@@ -49,6 +52,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
         let calendar:NSCalendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Hour], fromDate: date)
         let hour = components.hour
+        
         if (hour > 0 && hour < 12){
             isMorning = true
         }else{
@@ -149,7 +153,9 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
             cell.detailTextLabel?.textColor = UIColor.grayColor()
         }
     }
-    
+    @IBAction func settingsDidTouch(sender: AnyObject) {
+        performSegueWithIdentifier(self.ListToSettings, sender: nil)
+    }
     // MARK: Add Item
     // Button to email or group message page
     @IBAction func emailButtonDidTouch(sender: AnyObject) {
@@ -291,11 +297,12 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                 }
                 
             }
-        } else if (segue.identifier == "Settings") {
+        } else if (segue.identifier == "ListToSettings") {
             let nav = segue.destinationViewController as! SettingsViewController
             nav.email = self.email
             nav.password = self.password
-            nav.uid = self.uid
+            nav.user = self.user
+            nav.auth = self.auth
         }
     }
     
@@ -334,7 +341,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                         self.loadStudentInfo()
                     })
                     // need this to switch between accounts
-                    try! FIRAuth.auth()!.signOut()
+                    // try! FIRAuth.auth()!.signOut()
                 }
             }
         }
