@@ -1,12 +1,14 @@
-
+import CoreLocation
+import MapKit
 import UIKit
+import Toast_Swift
 /*
  *  MeetingInfoViewController: Controller for meeting information view
  *  Connected by segue from SutdentListTableViewController.
  *  A staff and a user are passed in by segue.
  *  Connects to Firebase to query busRoute meeting information.
  */
-class MeetingInfoTableViewController: UITableViewController {
+class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     // MARK: Properties
     var busRoutes = [BusRoute]()
@@ -14,6 +16,9 @@ class MeetingInfoTableViewController: UITableViewController {
     var staff:Staff!
     var parent:Parent!
     var isStaff:Bool!
+    var locationManager:CLLocationManager!
+    var locValue:CLLocation!
+    var sharing:Bool = false
     
     var meetingInfoWrapperList = [MeetingInfoWrapper]()
     
@@ -24,6 +29,18 @@ class MeetingInfoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if (self.isStaff == true){
+            self.locationManager = CLLocationManager()
+            
+            // For use in foreground
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.requestAlwaysAuthorization()
+            
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                self.locationManager.startUpdatingLocation()
+            }
+            
             dbComm.routeRef.queryOrderedByKey().queryEqualToValue(self.staff.routeID).observeEventType(.Value, withBlock: {   snapshot in
                 var busRoutesFromDB = [BusRoute]()
                 if (snapshot.hasChildren()){
@@ -51,6 +68,36 @@ class MeetingInfoTableViewController: UITableViewController {
             }
         }
     }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.locValue = locations[0]
+        print("locations = \(locValue.coordinate.latitude) \(locValue.coordinate.longitude)")
+        if (self.isStaff == true) {
+            var currLocation: [String: Double] = ["Latitude": Double(locValue.coordinate.latitude), "Longitude": Double(locValue.coordinate.longitude)]
+            dbComm.routeRef.child(self.staff.routeID).child("currLocation").updateChildValues(currLocation)
+            dbComm.routeRef.child(self.staff.routeID).child("currLocation").child("current").setValue(true)
+        }
+    }
+    
+
+    @IBAction func locationDidPush(sender: AnyObject) {
+        if (self.isStaff == true) {
+            if (self.sharing == false) {
+                self.view.makeToast("started sharing location", duration: 1.5, position: CGPoint(x:200.0, y:500.0))
+                var currLocation: [String: Double] = ["Latitude": Double(locValue.coordinate.latitude), "Longitude": Double(locValue.coordinate.longitude)]
+                dbComm.routeRef.child(self.staff.routeID).child("currLocation").updateChildValues(currLocation)
+                dbComm.routeRef.child(self.staff.routeID).child("currLocation").child("current").setValue(true)
+                self.sharing = true
+            } else {
+                self.view.makeToast("stopped sharing location", duration: 1.5, position: CGPoint(x:200.0, y:500.0))
+                self.locationManager.stopUpdatingLocation()
+                dbComm.routeRef.child(self.staff.routeID).child("currLocation").child("current").setValue(false)
+            }
+        } else {
+            
+        }
+    }
+
     
     // MARK: ViewDidAppear
     override func viewDidAppear(animated: Bool) {

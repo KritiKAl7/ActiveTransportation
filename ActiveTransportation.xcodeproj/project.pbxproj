@@ -12,6 +12,8 @@
 		03B2068A1C79526300FD7782 /* StudentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B206891C79526300FD7782 /* StudentWrapper.swift */; };
 		03C64ED61C8C1B3300626E0E /* MeetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C64ED51C8C1B3300626E0E /* MeetingInfoCell.swift */; };
 		2B3E39211D2191230076E273 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E39201D2191230076E273 /* GoogleService-Info.plist */; };
+		2B4F6AE51D36E79F00789260 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4F6AE41D36E79F00789260 /* MapsViewController.swift */; };
+		2B4F6AE71D36FA4B00789260 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4F6AE61D36FA4B00789260 /* CoreLocation.framework */; };
 		2BA99DF81D1B340600CED059 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA99DF71D1B340600CED059 /* SettingsViewController.swift */; };
 		744334CA1C896B6800B4AD99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 744334C91C896B6800B4AD99 /* Main.storyboard */; };
 		744334CE1C8970A200B4AD99 /* DbCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744334CD1C8970A200B4AD99 /* DbCommunicator.swift */; };
@@ -36,6 +38,8 @@
 		03C64ED51C8C1B3300626E0E /* MeetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingInfoCell.swift; sourceTree = "<group>"; };
 		0E246C4AC0D235EB0A823A98 /* Pods-ActiveTransportation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTransportation.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation.release.xcconfig"; sourceTree = "<group>"; };
 		2B3E39201D2191230076E273 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B4F6AE41D36E79F00789260 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		2B4F6AE61D36FA4B00789260 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BA99DF71D1B340600CED059 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4D5440B11FCD1F765A43CD95 /* Pods-ActiveTransportation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTransportation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation.debug.xcconfig"; sourceTree = "<group>"; };
 		744334C91C896B6800B4AD99 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B4F6AE71D36FA4B00789260 /* CoreLocation.framework in Frameworks */,
 				A84793CED76C62001D4F07AC /* Pods_ActiveTransportation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +133,7 @@
 				BB30CD491B439B60004B3177 /* MeetingInfoTableViewController.swift */,
 				749EFAA01C8BEF340018D3F7 /* ContactInfoViewController.swift */,
 				2BA99DF71D1B340600CED059 /* SettingsViewController.swift */,
+				2B4F6AE41D36E79F00789260 /* MapsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -167,6 +173,7 @@
 		CC507524E4F0260770E4D4F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B4F6AE61D36FA4B00789260 /* CoreLocation.framework */,
 				BAF6A006C0149C0838FEAC58 /* Pods_ActiveTransportation.framework */,
 			);
 			name = Frameworks;
@@ -309,6 +316,7 @@
 				03B206861C78225B00FD7782 /* BusRoute.swift in Sources */,
 				BB2385641B3DD5AB0079CD01 /* LoginViewController.swift in Sources */,
 				744334CE1C8970A200B4AD99 /* DbCommunicator.swift in Sources */,
+				2B4F6AE51D36E79F00789260 /* MapsViewController.swift in Sources */,
 				0336785C1C8C38D3002AD69C /* MeetingInfoWrapper.swift in Sources */,
 				749EFAA11C8BEF340018D3F7 /* ContactInfoViewController.swift in Sources */,
 				BB2385841B3DD8660079CD01 /* StudentListTableViewController.swift in Sources */,

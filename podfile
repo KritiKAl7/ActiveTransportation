@@ -10,5 +10,6 @@ target 'ActiveTransportation' do
   pod 'Firebase/Auth'
   platform :ios, '8.0'
   pod 'Toast-Swift', '~> 1.3.0'
+  pod 'GoogleMaps'
   # Pods for ActiveTransportation
 end

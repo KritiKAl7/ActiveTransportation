@@ -345,46 +345,6 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
                 }
             }
         }
-        
-        
-        
-        
-//        self.dbComm.rootRef.observeAuthEventWithBlock { authData in
-//            if authData != nil {
-//                if (self.signUpMode == true){
-//                    let currentUserRef = Firebase!(self.dbComm.usersRef.childByAppendingPath(authData.uid))
-//                    self.uid = authData.uid
-//                    if (self.isStaff){
-//                        self.staff = Staff(authData:authData, name:self.nameToPass, contactInfo:self.contactInfoToPass,
-//                            isStaff:true)
-//                        currentUserRef.setValue(self.staff.toAnyObject())
-//                    } else {
-//                        self.parent = Parent(authData:authData, name:self.nameToPass, contactInfo:self.contactInfoToPass,
-//                            isStaff:false)
-//                        currentUserRef.setValue(self.parent.toAnyObject())
-//                    }
-//                    self.dbComm.rootRef.unauth()
-//                    self.reloadTable()
-//                    self.nullDataAlert()
-//                } else{
-//                    let idCopy = authData.uid.lowercaseString
-//                    self.dbComm.usersRef.childByAppendingPath(idCopy).observeEventType(.Value, withBlock: { snapshot in
-//                        if (snapshot.hasChildren()){
-//                            if (snapshot.value["isStaff"] as! Bool){
-//                                self.isStaff = true
-//                                self.staff = Staff(snapshot: snapshot)
-//                            }else{
-//                                self.isStaff = false
-//                                self.parent = Parent(snapshot: snapshot)
-//                            }
-//                        }
-//                        self.loadStudentInfo()
-//                    })
-//                    // need this to switch between accounts
-//                    self.dbComm.rootRef.unauth()
-//                }
-//            }
-//        }
     }
     
     func loadStudentInfo(){

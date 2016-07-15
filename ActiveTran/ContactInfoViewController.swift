@@ -95,7 +95,7 @@ class ContactInfoViewController: UITableViewController, MFMessageComposeViewCont
     // MARK: On user selecting a contactInfoCell, show menu for contact actions
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Find the cell that user tapped using cellForRowAtIndexPath
-        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        // let cell = tableView.cellForRowAtIndexPath(indexPath)!
         // Get the corresponding GreoceryItem by using the index path's row
         let userSelected = users[indexPath.row]
         
