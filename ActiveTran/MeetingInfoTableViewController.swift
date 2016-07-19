@@ -94,7 +94,14 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
                 dbComm.routeRef.child(self.staff.routeID).child("currLocation").child("current").setValue(false)
             }
         } else {
-            
+            performSegueWithIdentifier("ParentMap", sender: self)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "ParentMap") {
+            let nav = segue.destinationViewController as! MapsViewController
+            nav.students = self.students
         }
     }
 

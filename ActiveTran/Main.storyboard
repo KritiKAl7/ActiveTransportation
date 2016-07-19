@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -200,51 +200,30 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
+                    <connections>
+                        <segue destination="frG-1G-dcj" kind="show" identifier="ParentMap" id="cSM-Gi-nca"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34B-UD-7ew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1725" y="425"/>
+            <point key="canvasLocation" x="1690" y="425"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="itT-ZI-7Pu">
-            <objects>
-                <viewController id="Twm-h2-9RP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NO5-MC-2ts"/>
-                        <viewControllerLayoutGuide type="bottom" id="XbB-c3-0DF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2dM-dn-K2V">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2H3-N6-rXM">
-                                <rect key="frame" x="551" y="116" width="51" height="31"/>
-                            </switch>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6ue-gT-sqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2402" y="85"/>
-        </scene>
-        <!--View Controller-->
+        <!--Map-->
         <scene sceneID="LTz-Dj-md7">
             <objects>
-                <viewController id="frG-1G-dcj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oXd-z9-LKA"/>
-                        <viewControllerLayoutGuide type="bottom" id="Z4e-x4-Y70"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MwQ-ir-jqC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                <viewController storyboardIdentifier="Map" id="frG-1G-dcj" customClass="MapsViewController" customModule="ActiveTransportation" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Map" id="MLX-od-vbb">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="KYh-Vk-Wgc">
+                            <connections>
+                                <action selector="nextDidTouch:" destination="frG-1G-dcj" id="YKH-mC-ddB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gva-AX-YBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2402" y="820"/>
+            <point key="canvasLocation" x="2369" y="425"/>
         </scene>
         <!--Contact Info-->
         <scene sceneID="yUs-hS-UeW">
@@ -285,6 +264,7 @@
                             <outlet property="delegate" destination="a3D-3x-hHE" id="fmh-bb-R0N"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9B-00-JmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
