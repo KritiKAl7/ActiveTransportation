@@ -23,6 +23,7 @@ class MapsViewController: UITableViewController {
     
     override func loadView() {
         super.loadView()
+        //Pre-set the camera according to the user's time zone
         let hoursFromGMT: Int = NSTimeZone.localTimeZone().secondsFromGMT / 3600
         let camera = GMSCameraPosition.cameraWithLatitude(40.0, longitude: Double (hoursFromGMT * 15), zoom:4)
         mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
@@ -32,6 +33,7 @@ class MapsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if (!self.students.isEmpty) {
+            //If there is available location data, start updating the markers on the map
             var updateTime = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("updateLocations"), userInfo: nil, repeats: true)
         } else {
             self.view.makeToast("No Location Data Available", duration: 1.5, position: CGPoint(x:200.0, y:500.0))
@@ -40,8 +42,9 @@ class MapsViewController: UITableViewController {
     
     
     @IBAction func nextDidTouch(sender: AnyObject) {
+        //Rotate the camera among the markers representing each kids
         if(legitStudents.count > index){
-            let currCamera = GMSCameraPosition.cameraWithLatitude(latitudes[index], longitude: longitudes[index], zoom: 10)
+            let currCamera = GMSCameraPosition.cameraWithLatitude(latitudes[index], longitude: longitudes[index], zoom: 12)
             mapView.camera = currCamera
             index += 1
             if (index >= legitStudents.count) {
@@ -53,8 +56,9 @@ class MapsViewController: UITableViewController {
     }
     
     func updateLocations() {
+        //main function that updates the markers on tha map
         if (!self.students.isEmpty) {
-            //self.mapView.clear()
+            self.mapView.clear()
             for student in self.students {
                 dbComm.routeRef.child(student.routeID).observeEventType(.Value, withBlock: {snapshot in
                     if (snapshot.hasChild("currLocation")) {
