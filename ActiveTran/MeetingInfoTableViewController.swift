@@ -28,6 +28,11 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.meetingInfoWrapperList = []
+        loadData()
+    }
+
+    func loadData() {
         if (self.isStaff == true){
             self.locationManager = CLLocationManager()
             
@@ -53,6 +58,7 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
                 self.tableView.reloadData()
             })
         } else {
+            self.tableView.reloadData()
             for student in self.students {
                 dbComm.routeRef.queryOrderedByKey().queryEqualToValue(student.routeID).observeEventType(.Value, withBlock: {
                     snapshot in
@@ -67,6 +73,7 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
                 })
             }
         }
+        
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -109,8 +116,13 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
     // MARK: ViewDidAppear
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.tableView.reloadData()
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.meetingInfoWrapperList.removeAll()
+    }
 
     // MARK: UITableView Delegate methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,6 +131,7 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
     
     // MARK: Display information depending on user type
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> MeetingInfoCell {
+        print (self.meetingInfoWrapperList.count)
         let cell = tableView.dequeueReusableCellWithIdentifier("MeetingInfoCell")! as! MeetingInfoCell
         
         if (self.isStaff == true){

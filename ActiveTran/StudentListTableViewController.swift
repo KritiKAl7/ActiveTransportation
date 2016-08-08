@@ -348,6 +348,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
     }
     
     func loadStudentInfo(){
+        self.students.removeAll()
         if(self.isStaff && self.staff.routeID != ""){
             self.dbComm.routeRef.child(self.staff.routeID).observeEventType(.Value, withBlock: {
                 snapshot in
