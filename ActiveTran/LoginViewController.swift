@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Flag for segue identifier
     let LoginToList = "LoginToList"
+    let ChangeToSettings = "ChangeToSettings"
     var signUpMode = false
     
     // MARK: Data passed through Segue to StudentListTableView
@@ -65,8 +66,31 @@ class LoginViewController: UIViewController {
                 print("Sign in failed:", error)
                 self.view.makeToast(error.localizedDescription)
             } else {
-                print ("Signed in with uid:", user!.uid)
-                self.performSegueWithIdentifier(self.LoginToList, sender: nil)
+                self.currUser = user
+                self.dbComm.usersRef.child(user!.uid).observeEventType(.Value, withBlock: {
+                    snapshot in
+                    if (snapshot.hasChild("passwordChanged") && !(snapshot.value!["passwordChanged"] as! Bool)) {
+                        let alert = UIAlertController(title: "Change your password", message: "Welcome! Please change from default password", preferredStyle: .Alert)
+                        let saveAction = UIAlertAction(title: "OK", style: .Default)
+                        { (action: UIAlertAction) -> Void in
+                            self.performSegueWithIdentifier(self.ChangeToSettings, sender: nil)
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel",
+                        style: .Default) { (action: UIAlertAction) -> Void in
+                        }
+                        
+                        alert.addAction(saveAction)
+                        alert.addAction(cancelAction)
+                        
+                        self.presentViewController(alert,
+                            animated: true,
+                            completion: nil)
+                    } else {
+                        print ("Signed in with uid:", user!.uid)
+                        self.performSegueWithIdentifier(self.LoginToList, sender: nil)
+                    }
+                })
+                
                 
             }
         }
@@ -197,6 +221,15 @@ class LoginViewController: UIViewController {
             svc.user = self.currUser
             svc.auth = self.auth
             
+        }
+        if (segue.identifier == "ChangeToSettings") {
+            print ("segue called")
+            let nav = segue.destinationViewController as! SettingsViewController
+            nav.email = self.email
+            nav.password = self.password
+            nav.user = self.currUser
+            nav.auth = self.auth
+            nav.secure = false
         }
     }
 

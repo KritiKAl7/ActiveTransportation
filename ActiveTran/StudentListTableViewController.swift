@@ -303,6 +303,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
             nav.password = self.password
             nav.user = self.user
             nav.auth = self.auth
+            nav.secure = true
         }
     }
     

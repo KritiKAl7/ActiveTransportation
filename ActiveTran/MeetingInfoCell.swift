@@ -16,6 +16,8 @@ class MeetingInfoCell: UITableViewCell {
     @IBOutlet weak var meetingLocationLabel: UILabel!
     @IBOutlet weak var meetingTimeLabel: UILabel!
     
+    
+    @IBOutlet weak var travelDistanceLabel: UILabel!
    // should have a button for displaying map in the future 
    // @IBOutlet weak var titleLabel: UILabel!
 }

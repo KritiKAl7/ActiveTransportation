@@ -19,6 +19,7 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
     var locationManager:CLLocationManager!
     var locValue:CLLocation!
     var sharing:Bool = false
+    var count = [Double!]()
     
     var meetingInfoWrapperList = [MeetingInfoWrapper]()
     
@@ -66,7 +67,21 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
                         for item in snapshot.children {
                             let routeFromDB = BusRoute(snapshot: item as! FIRDataSnapshot)
                             self.busRoutes.append(routeFromDB)
-                            self.meetingInfoWrapperList.append(MeetingInfoWrapper(student: student,busRoute: routeFromDB))
+                            var studentID = student.key
+                            self.dbComm.logRef.queryOrderedByKey().observeEventType(.Value, withBlock: {snapshot in
+                                var res = 0.0
+                                for datasnapshot in snapshot.children {
+                                    if (datasnapshot.hasChild("afternoon") && datasnapshot.value!["afternoon"]!![studentID]! != nil) {
+                                        res += datasnapshot.value!["afternoon"]!![studentID] as! Double
+                                    }
+                                    
+                                    if (datasnapshot.hasChild("morning") && datasnapshot.value!["morning"]!![studentID]! != nil) {
+                                        res += datasnapshot.value!["morning"]!![studentID] as! Double
+                                    }
+                                }
+                                
+                            })
+                        self.meetingInfoWrapperList.append(MeetingInfoWrapper(student: student,busRoute: routeFromDB, count: 0.0))
                         }
                     }
                     self.tableView.reloadData()
@@ -131,7 +146,7 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
     
     // MARK: Display information depending on user type
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> MeetingInfoCell {
-        print (self.meetingInfoWrapperList.count)
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("MeetingInfoCell")! as! MeetingInfoCell
         
         if (self.isStaff == true){
@@ -142,7 +157,28 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
             cell.infoOwnerLabel?.text = "Showing details for student: " + meetingInfoWrapperList[indexPath.row].student.name
             cell.meetingLocationLabel?.text = meetingInfoWrapperList[indexPath.row].busRoute.meetingLocation
             cell.meetingTimeLabel?.text = meetingInfoWrapperList[indexPath.row].busRoute.meetingTime
+            let student : Student = meetingInfoWrapperList[indexPath.row].student
+            cell.travelDistanceLabel?.text = "Total Distance Traveled: " + String(meetingInfoWrapperList[indexPath.row].count)
+            
         }
         return cell
     }
+    
+//    func getDistance(studentID: String) -> Double {
+//        self.dbComm.logRef.queryOrderedByKey().observeEventType(.Value, withBlock: {snapshot in
+//            var res = 0.0
+//            for datasnapshot in snapshot.children {
+//                if (datasnapshot.hasChild("afternoon") && datasnapshot.value!["afternoon"]!![studentID]! != nil) {
+//                    res += datasnapshot.value!["afternoon"]!![studentID] as! Double
+//                }
+//                
+//                if (datasnapshot.hasChild("morning") && datasnapshot.value!["morning"]!![studentID]! != nil) {
+//                    res += datasnapshot.value!["morning"]!![studentID] as! Double
+//                }
+//            }
+//            self.count = res
+//        })
+//        print ("out" + String(self.count))
+//        return self.count
+//    }
 }

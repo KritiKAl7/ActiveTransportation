@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController{
     var uid: String!
     var user:FIRUser!
     var auth:FIRAuth!
+    var secure: Bool!
     
     var dbComm = DbCommunicator()
     
@@ -119,6 +120,9 @@ class SettingsViewController: UIViewController{
                         self.view.makeToast("Change Failed:" + error.localizedDescription)
                     } else {
                         self.view.makeToast("Changed password")
+                        if (self.secure != nil && !self.secure) {
+                            self.dbComm.usersRef.child(self.user.uid).child("passwordChanged").setValue(true)
+                        }
                     }
                 }
             }
