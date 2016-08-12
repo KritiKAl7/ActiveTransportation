@@ -98,7 +98,6 @@ class LoginViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func signUpDidTouch(sender: AnyObject) {
-        signUpMode = true
         let alert = UIAlertController(title: "Sign Up",
                                       message: "Sign Up for Active Transporation",
                                       preferredStyle: .Alert)
@@ -133,6 +132,7 @@ class LoginViewController: UIViewController {
                 if error == nil {
                     FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!){
                         (error, auth) -> Void in
+                        self.signUpMode = true
                         self.performSegueWithIdentifier(self.LoginToList, sender: nil)
                     }
                     self.email = emailField.text
@@ -145,6 +145,7 @@ class LoginViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .Default) { (action: UIAlertAction) -> Void in
+                                           self.signUpMode = false
         }
         
         alert.addTextFieldWithConfigurationHandler {
