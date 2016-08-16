@@ -50,9 +50,6 @@ class SettingsViewController: UIViewController{
         self.toastPoint = CGPoint(x: self.screenwidth / 2, y: self.screenheight / 2 + 190)
         print (self.toastPoint)
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        let nav = segue.destinationViewController as! StudentListTableViewController
-//    }
     
     @IBAction func changePhone(sender: AnyObject) {
         let alert = UIAlertController(title: "Change Phone Number", message: "Change your phone number", preferredStyle: .Alert)

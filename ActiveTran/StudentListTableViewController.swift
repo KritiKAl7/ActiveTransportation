@@ -99,7 +99,7 @@ class StudentListTableViewController: UITableViewController, MFMailComposeViewCo
         let studentSelected = studentsWrapper[keysForTable[indexPath.row]]
         
         cell.textLabel?.text = studentSelected?.student.name
-        cell.detailTextLabel?.text = "Student ID Number: " + (studentSelected?.student.key)!
+        // cell.detailTextLabel?.text = "Student ID Number: " + (studentSelected?.student.key)!
         
         // Determine whether the cell is checked
         toggleCellCheckbox(cell, isCompleted: (studentSelected?.arrived)!)
