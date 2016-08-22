@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // [START initialize_firebase]
-        GMSServices.provideAPIKey("AIzaSyDRoeRl9n1-ZQMmAg3YnXJf_8iOmpIG54U")
+        GMSServices.provideAPIKey("AIzaSyDGwL7607QkOE71-j3Q6V8wm7Wj1R_4tLc")
         // [END initialize_firebase]
         return true
     }

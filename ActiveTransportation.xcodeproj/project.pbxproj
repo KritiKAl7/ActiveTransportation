@@ -11,9 +11,9 @@
 		03B206861C78225B00FD7782 /* BusRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B206851C78225B00FD7782 /* BusRoute.swift */; };
 		03B2068A1C79526300FD7782 /* StudentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B206891C79526300FD7782 /* StudentWrapper.swift */; };
 		03C64ED61C8C1B3300626E0E /* MeetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C64ED51C8C1B3300626E0E /* MeetingInfoCell.swift */; };
-		2B3E39211D2191230076E273 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E39201D2191230076E273 /* GoogleService-Info.plist */; };
 		2B4F6AE51D36E79F00789260 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4F6AE41D36E79F00789260 /* MapsViewController.swift */; };
 		2B4F6AE71D36FA4B00789260 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4F6AE61D36FA4B00789260 /* CoreLocation.framework */; };
+		2B9666B41D6B7A1B00CEAEC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9666B31D6B7A1B00CEAEC6 /* GoogleService-Info.plist */; };
 		2BA99DF81D1B340600CED059 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA99DF71D1B340600CED059 /* SettingsViewController.swift */; };
 		744334CA1C896B6800B4AD99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 744334C91C896B6800B4AD99 /* Main.storyboard */; };
 		744334CE1C8970A200B4AD99 /* DbCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744334CD1C8970A200B4AD99 /* DbCommunicator.swift */; };
@@ -37,9 +37,9 @@
 		03B206891C79526300FD7782 /* StudentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentWrapper.swift; sourceTree = "<group>"; };
 		03C64ED51C8C1B3300626E0E /* MeetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingInfoCell.swift; sourceTree = "<group>"; };
 		0E246C4AC0D235EB0A823A98 /* Pods-ActiveTransportation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTransportation.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation.release.xcconfig"; sourceTree = "<group>"; };
-		2B3E39201D2191230076E273 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B4F6AE41D36E79F00789260 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		2B4F6AE61D36FA4B00789260 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2B9666B31D6B7A1B00CEAEC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BA99DF71D1B340600CED059 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4D5440B11FCD1F765A43CD95 /* Pods-ActiveTransportation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTransportation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActiveTransportation/Pods-ActiveTransportation.debug.xcconfig"; sourceTree = "<group>"; };
 		744334C91C896B6800B4AD99 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		BB23855E1B3DD5AB0079CD01 /* ActiveTransportation */ = {
 			isa = PBXGroup;
 			children = (
-				2B3E39201D2191230076E273 /* GoogleService-Info.plist */,
+				2B9666B31D6B7A1B00CEAEC6 /* GoogleService-Info.plist */,
 				03C64ED41C8C1AF400626E0E /* Layout Support */,
 				BB2385881B3DD9550079CD01 /* Models */,
 				BB2385811B3DD8310079CD01 /* Controllers */,
@@ -224,7 +224,7 @@
 				TargetAttributes = {
 					BB23855B1B3DD5AB0079CD01 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = YA6UNQYBH6;
+						DevelopmentTeam = A744DH5NPH;
 					};
 				};
 			};
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				744334CA1C896B6800B4AD99 /* Main.storyboard in Resources */,
-				2B3E39211D2191230076E273 /* GoogleService-Info.plist in Resources */,
+				2B9666B41D6B7A1B00CEAEC6 /* GoogleService-Info.plist in Resources */,
 				BB23856C1B3DD5AB0079CD01 /* LaunchScreen.xib in Resources */,
 				BB2385691B3DD5AB0079CD01 /* Images.xcassets in Resources */,
 			);
@@ -439,7 +439,7 @@
 				INFOPLIST_FILE = ActiveTran/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.davideast.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.walkingschoolbusclaremont.ActiveTransportation.walkingschoolbusclaremont;
 				PRODUCT_NAME = ActiveTransportation;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "./ActiveTran/ActiveTran-Bridging-Header.h";
@@ -459,7 +459,7 @@
 				INFOPLIST_FILE = ActiveTran/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.davideast.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.walkingschoolbusclaremont.ActiveTransportation.walkingschoolbusclaremont;
 				PRODUCT_NAME = ActiveTransportation;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "./ActiveTran/ActiveTran-Bridging-Header.h";

@@ -7,17 +7,17 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>507582342699-g39islg1spsrac2vagtvftt3up3ntjr1.apps.googleusercontent.com</string>
+	<string>507582342699-qlnv13l9j131a5egpfc3anpopcsrukeo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.507582342699-g39islg1spsrac2vagtvftt3up3ntjr1</string>
+	<string>com.googleusercontent.apps.507582342699-qlnv13l9j131a5egpfc3anpopcsrukeo</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDRoeRl9n1-ZQMmAg3YnXJf_8iOmpIG54U</string>
+	<string>AIzaSyDGwL7607QkOE71-j3Q6V8wm7Wj1R_4tLc</string>
 	<key>GCM_SENDER_ID</key>
 	<string>507582342699</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.davideast.ActiveTransportation</string>
+	<string>com.walkingschoolbusclaremont.ActiveTransportation.walkingschoolbusclaremont</string>
 	<key>PROJECT_ID</key>
 	<string>popping-inferno-8538</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:507582342699:ios:88a79c1535e805a8</string>
+	<string>1:507582342699:ios:a7357d03d5240281</string>
 	<key>DATABASE_URL</key>
 	<string>https://popping-inferno-8538.firebaseio.com</string>
 </dict>

@@ -29,7 +29,7 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.meetingInfoWrapperList = []
+        //self.meetingInfoWrapperList = []
         loadData()
     }
 
@@ -136,7 +136,8 @@ class MeetingInfoTableViewController: UITableViewController, CLLocationManagerDe
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.meetingInfoWrapperList.removeAll()
+        //self.meetingInfoWrapperList.removeAll()
+        self.tableView.reloadData()
     }
 
     // MARK: UITableView Delegate methods
